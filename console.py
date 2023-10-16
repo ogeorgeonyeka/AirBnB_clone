@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.review import Review
 
 
+
 def parse(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -29,6 +30,7 @@ def parse(arg):
         retl = [i.strip(",") for i in lexer]
         retl.append(curly_braces.group())
         return retl
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -158,12 +160,8 @@ print(eval(argl[0])().id)
         print(count)
 
     def do_update(self, arg):
-        """Usage: update <class> <id> <attribute_name> <attribute_value> or
-
-<class>.update(<id>, <attribute_name>, <attribute_value>) or
-       <class>.update(<id>, <dictionary>)
-        Update a class instance of a given id by adding or updating
-        a given attribute key/value pair or dictionary."""
+        """Usage: update <class> <id> <attribute_name> <attribute_value> or <class>.update(<id>, <attribute_name>, <attribute_value>) or <class>.update(<id>, <dictionary>)
+        Update a class instance of a given id by adding or updating a given attribute key/value pair or dictionary."""
         argl = parse(arg)
         objdict = storage.all()
 
@@ -207,6 +205,7 @@ type(obj.__class__.__dict__[k]) in {str, int, float}):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
 
 
 if __name__ == "__main__":
